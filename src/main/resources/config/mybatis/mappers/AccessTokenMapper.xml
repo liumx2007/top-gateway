@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trasen.top.dao.AccessTokenMapper">
+    <select id="getAccessTokenForUpdate" parameterType="String" resultType="com.trasen.top.modle.AccessToken">
+        select appid,secret,access_token as accessToken,expires_in as expiresIn,expires_time as expiresTime from tb_access_token where appid = #{appid} for update
+    </select>
+    <update id="updateAccessToken" parameterType="com.trasen.top.modle.AccessToken">
+        update tb_access_token set access_token=#{accessToken},expires_in=#{expiresIn},expires_time=#{expiresTime},updated=now() where appid = #{appid}
+    </update>
+
+
+
+</mapper>

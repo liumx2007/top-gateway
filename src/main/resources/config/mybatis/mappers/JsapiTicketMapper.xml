@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trasen.top.dao.JsapiTicketMapper">
+    <select id="getJsapiTicketForUpdate" parameterType="String" resultType="com.trasen.top.modle.JsapiTicket">
+        select appid,secret,ticket,expires_in as expiresIn,expires_time as expiresTime from tb_jsapi_ticket where appid = #{appid} for update
+    </select>
+    <update id="updateJsapiTicket" parameterType="com.trasen.top.modle.JsapiTicket">
+        update tb_jsapi_ticket set ticket=#{ticket},expires_in=#{expiresIn},expires_time=#{expiresTime},updated=now() where appid = #{appid}
+    </update>
+
+
+
+</mapper>
